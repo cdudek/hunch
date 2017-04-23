@@ -35,7 +35,7 @@ app.use(express.static('public'));
 
 // Define routes.
 app.get('/', function(req, res) {
-    res.render('home', { user: req.user });
+    res.render('index', { user: req.user });
 });
 
 // Routing Items Resource
