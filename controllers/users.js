@@ -9,20 +9,22 @@ router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({ extended: false }));
 
 
-let items = {
-    "1": {"first_name": "calvin", "last_name": "dudek"},
-    "2": {"first_name": "nadja", "last_name": "dudek"}
+let users = {
+    "calvindudek": {"firstName": "Calvin", "lastName": "Dudek"},
+    "nadjadudek": {"firstName": "Nadja", "lastName": "Dudek"}
 };
 
 router.get('/', (req, res) => {
     // items_list
     // res.json(items_list)
-    res.render('home', items)
+    res.render('pages/users/all', {users})
 });
 
-router.get('/:id', (req, res) => {
-    let id = req.params.id;
-    res.send(`Hello World ${id}`);
+router.get('/:username', (req, res) => {
+    let username = req.params.username;
+    let user = users[username];
+    res.render('pages/users/profile', { user })
+
 });
 
 router.put('/:id', (req, res) => {
@@ -30,7 +32,9 @@ router.put('/:id', (req, res) => {
 });
 
 router.delete('/:id', (req, res) => {
-    // let id = re
+
 });
+
+
 
 module.exports = router;

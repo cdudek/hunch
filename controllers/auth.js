@@ -67,7 +67,7 @@ router.use(passport.session());
 
 router.get('/login',
     function(req, res){
-        res.render('login');
+        res.render('pages/auth/login');
     });
 
 router.get('/logout', function(req, res){
@@ -88,9 +88,9 @@ router.get('/facebook/callback',
     });
 
 
-router.get('/profile', require('connect-ensure-login').ensureLoggedIn(),
-    function(req, res){
-        res.render('profile', { user: req.user });
-    });
+// router.get('/profile', require('connect-ensure-login').ensureLoggedIn(),
+//     function(req, res){
+//         res.render('/profile', { user: req.user });
+//     });
 
 module.exports = router;
