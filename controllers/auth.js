@@ -12,8 +12,8 @@ const cbUrl = 'http://localhost:' + (process.env.PORT || 8000) + '/auth/facebook
 // with a user object, which will be set at `req.user` in route handlers after
 // authentication.
 passport.use(new facebookStrategy ({
-        clientID: process.env.CLIENT_ID || "165247457332983",
-        clientSecret: process.env.CLIENT_SECRET || "f490ac4aaa0207433e4ade2c7c532e5b",
+        clientID: process.env.CLIENT_ID || "FACEBOOK_APP_ID",
+        clientSecret: process.env.CLIENT_SECRET || "FACEBOOK_APP_SECRET",
         callbackURL: cbUrl
     },
     function(accessToken, refreshToken, profile, cb) {
@@ -75,10 +75,10 @@ router.get('/logout', function(req, res){
     res.redirect('/');
 });
 
-router.get('/auth/facebook',
+router.get('/facebook',
     passport.authenticate('facebook'));
 
-router.get('/auth/facebook/callback',
+router.get('/facebook/callback',
     passport.authenticate('facebook', {
         successRedirect : '/',
         failureRedirect: '/login'

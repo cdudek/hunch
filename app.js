@@ -14,14 +14,14 @@ let app = express();
 // add security
 app.use(helmet());
 
-//
-const items = require('./controllers/items');
-const auth = require('./controllers/auth');
+// add resources
+const users = require('./controllers/users.js');
+const auth = require('./controllers/auth.js');
 
-//
+// set default views directory
 app.set('views', path.join(__dirname, 'views'));
-// app.set('view engine', 'ejs');
 
+// set default view engine
 app.set('view engine', 'hbs');
 app.engine('hbs', handlebars({
     defaultLayout: 'main',
@@ -30,7 +30,7 @@ app.engine('hbs', handlebars({
 }));
 
 
-// Public file directory
+// public file directory e.g. for css files, static html pages, etcs
 app.use(express.static('public'));
 
 // Define routes.
@@ -39,12 +39,12 @@ app.get('/', function(req, res) {
 });
 
 // Routing Items Resource
-app.use('/items', items);
-app.use('/', auth);
+app.use('/users', users);
+app.use('/auth', auth);
 
 
 
-// let port = process.env.PORT || 8080;
+// Start server at Port X
 let port = process.env.PORT || 8000;
 
 app.listen(port, () => {
